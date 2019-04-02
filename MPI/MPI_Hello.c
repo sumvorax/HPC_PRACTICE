@@ -1,6 +1,6 @@
-# include <mpi.h>
-# include <stdio.h>
-# include <stdlib.h>
+#include <mpi.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /// Simplest program
 /// Compile with 'mpicc MPI_Hello.c -o hello.out'
