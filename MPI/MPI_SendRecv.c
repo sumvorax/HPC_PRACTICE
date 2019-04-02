@@ -4,20 +4,21 @@
 
 int main(int argc, char ** argv)
 {
+    ierr = MPI_Init(&argc, &argv);
+
     const int N = 10;
     float data[N];
-
-    int count;
-    int dest;
-    int ierr;
 
     int psize;
     int prank;
     int source;
+    int dest;
     int tag;
-    MPI_Status status;
 
-    ierr = MPI_Init(&argc, &argv);
+    MPI_Status status;
+    int ierr;
+    int count;
+
     ierr = MPI_Comm_rank(MPI_COMM_WORLD, &prank);
     ierr = MPI_Comm_size(MPI_COMM_WORLD, &psize);
 
@@ -46,7 +47,7 @@ int main(int argc, char ** argv)
 
         if (psize > 1)
         {
-            ierr = MPI_Send(data, N, MPI_FLOAT, dest, 0, MPI_COMM_WORLD);
+            ierr = MPI_Send(data, N, MPI_FLOAT, dest, tag, MPI_COMM_WORLD);
         }
         else
         {

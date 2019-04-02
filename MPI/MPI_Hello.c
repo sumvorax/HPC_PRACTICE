@@ -8,13 +8,14 @@
 
 int main(int argc, char ** argv)
 {
+    ierr = MPI_Init(&argc, &argv);
+
     int psize;
     int prank;
-    MPI_Status status;
 
+    MPI_Status status;
     int ierr;
 
-    ierr = MPI_Init(&argc, &argv);
     ierr = MPI_Comm_rank(MPI_COMM_WORLD, &prank);
     ierr = MPI_Comm_size(MPI_COMM_WORLD, &psize);
 
