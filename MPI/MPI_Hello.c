@@ -3,8 +3,8 @@
 # include <stdlib.h>
 
 /// Simplest program
-/// Compile with 'mpicc MPI_Hello.c -o hello'
-/// Run with 'mpirun -n <process_number> hello'
+/// Compile with 'mpicc MPI_Hello.c -o hello.out'
+/// Run with 'mpirun -n <process_number> hello.out'
 
 int main(int argc, char ** argv)
 {
