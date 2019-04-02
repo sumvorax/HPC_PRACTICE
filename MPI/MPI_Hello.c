@@ -4,20 +4,19 @@
 
 /// Simplest program
 /// Compile with 'mpicc MPI_Hello.c -o hello.out'
-/// Run with 'mpirun -n <process_number> hello.out'
+/// Run with 'mpirun -n <process_number> ./hello.out'
 
 int main(int argc, char ** argv)
 {
-    ierr = MPI_Init(&argc, &argv);
+    MPI_Init(&argc, &argv);
 
     int psize;
     int prank;
 
     MPI_Status status;
-    int ierr;
 
-    ierr = MPI_Comm_rank(MPI_COMM_WORLD, &prank);
-    ierr = MPI_Comm_size(MPI_COMM_WORLD, &psize);
+    MPI_Comm_rank(MPI_COMM_WORLD, &prank);
+    MPI_Comm_size(MPI_COMM_WORLD, &psize);
 
     // root process
     if (prank == 0)
@@ -27,7 +26,7 @@ int main(int argc, char ** argv)
 
     printf("Hello world from process[%d]\n", prank);
 
-    ierr = MPI_Finalize();
+    MPI_Finalize();
 
     return 0;
 }
