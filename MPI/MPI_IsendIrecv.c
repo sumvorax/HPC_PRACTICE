@@ -8,7 +8,6 @@ int main(int argc, char ** argv)
 
     MPI_Status status;
     MPI_Request request;
-    int ierr;
 
     int psize;
     int prank;

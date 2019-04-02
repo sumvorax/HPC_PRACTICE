@@ -4,7 +4,7 @@
 
 int main(int argc, char ** argv)
 {
-    ierr = MPI_Init(&argc, &argv);
+    MPI_Init(&argc, &argv);
 
     const int N = 10;
     float data[N];
