@@ -16,11 +16,10 @@ int main(int argc, char ** argv)
     int tag;
 
     MPI_Status status;
-    int ierr;
     int count;
 
-    ierr = MPI_Comm_rank(MPI_COMM_WORLD, &prank);
-    ierr = MPI_Comm_size(MPI_COMM_WORLD, &psize);
+    MPI_Comm_rank(MPI_COMM_WORLD, &prank);
+    MPI_Comm_size(MPI_COMM_WORLD, &psize);
 
     if (prank == 0)
     {
@@ -47,7 +46,7 @@ int main(int argc, char ** argv)
 
         if (psize > 1)
         {
-            ierr = MPI_Send(data, N, MPI_FLOAT, dest, tag, MPI_COMM_WORLD);
+            MPI_Send(data, N, MPI_FLOAT, dest, tag, MPI_COMM_WORLD);
         }
         else
         {
@@ -59,10 +58,10 @@ int main(int argc, char ** argv)
         source = 0;
         tag = 0;
 
-        ierr = MPI_Recv(
+        MPI_Recv(
             data, N, MPI_FLOAT, source, tag, MPI_COMM_WORLD, &status
         );
-        ierr = MPI_Get_count(&status, MPI_FLOAT, &count);
+        MPI_Get_count(&status, MPI_FLOAT, &count);
 
         printf("p[%d]: received %d elements\n", prank, count);
         printf("p[%d]: which are:\n", prank);
@@ -80,7 +79,7 @@ int main(int argc, char ** argv)
         printf("p[%d]: nothing to do\n", prank);
     }
 
-    ierr = MPI_Finalize();
+    MPI_Finalize();
 
     return 0;
 }
