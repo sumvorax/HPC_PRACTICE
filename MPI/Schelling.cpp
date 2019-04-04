@@ -46,6 +46,7 @@ class City
         void Iterate(const int iterations);
 
         // Your I/O
+        void FileDump(const int iteration);
 };
 
 City::City()
@@ -193,7 +194,29 @@ void City::Iterate(const int iterations)
     {
         count = EvaluateMove();
         Shuffle(count);
+
+        FileDump(k);
     }
+
+    return;
+}
+
+void City::FileDump(const int iteration)
+{
+    char buffer[32]; // The filename buffer.
+    snprintf(buffer, sizeof(char) * 32, "dump_%d.bin", iteration);
+
+    FILE * file = fopen(buffer, "wb");
+    int count = size * size;
+
+    fwrite(&count, sizeof(int), 1, file);
+
+    for (int k = 0; k < count; ++k)
+    {
+        fwrite(houses + k, sizeof(int), 1, file);
+    }
+
+    fclose(file);
 
     return;
 }
@@ -202,11 +225,11 @@ int main(int argc, char ** argv)
 {
     const int size = 100;
     const double coeff = .51;
-    const int iter = 100;
+    const int iter = 10;
 
     City city(size, coeff);
 
-    city.Iterate(1);
+    city.Iterate(iter);
 
     return 0;
 }
